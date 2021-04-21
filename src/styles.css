@@ -5,6 +5,19 @@ body {
   color: #404C51;
 }
 
+a {
+  text-decoration: none;
+}
+
+a:hover, a:focus {
+  text-decoration: underline;
+}
+
+a.p-button:hover,
+a.p-button:focus {
+  text-decoration: none;
+}
+
 label {
   font-weight: bold;
 }
@@ -44,5 +57,17 @@ label {
 
   .col-acoes .p-button {
     margin: 1px;
+  }
+
+  .status a{
+    text-decoration: none;
+  }
+
+  .status a:hover, a:focus {
+    text-decoration: underline;
+  }
+
+  .status {
+    color: #404C51;
   }
 }
