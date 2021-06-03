@@ -20,6 +20,7 @@ import { LancamentoCadastroComponent } from './lancamento-cadastro/lancamento-ca
 import { CurrencyMaskModule } from 'ng2-currency-mask';
 import { PessoaCadastroComponent } from './pessoa-cadastro/pessoa-cadastro.component';
 import { FormsModule } from '@angular/forms';
+import { MessageComponent } from './message/message.component';
 
 @NgModule({
   declarations: [
@@ -28,14 +29,15 @@ import { FormsModule } from '@angular/forms';
     NavBarComponent,
     PessoasPesquisaComponent,
     LancamentoCadastroComponent,
-    PessoaCadastroComponent
+    PessoaCadastroComponent,
+    MessageComponent  
 
   ],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
     FormsModule,
-    
+
     InputTextModule,
     ButtonModule,
     TableModule,
