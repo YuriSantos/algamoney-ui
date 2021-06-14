@@ -13,9 +13,17 @@ a:hover, a:focus {
   text-decoration: underline;
 }
 
+form .p-button {
+  margin-right: .25em;
+}
+
 a.p-button:hover,
 a.p-button:focus {
   text-decoration: none;
+}
+
+.p-button {
+  margin-right: .25em
 }
 
 label {
@@ -57,17 +65,5 @@ label {
 
   .col-acoes .p-button {
     margin: 1px;
-  }
-
-  .status a{
-    text-decoration: none;
-  }
-
-  .status a:hover, a:focus {
-    text-decoration: underline;
-  }
-
-  .status {
-    color: #404C51;
   }
 }
