@@ -34,7 +34,7 @@ export class LancamentosPesquisaComponent implements OnInit{
         this.totalRegistros = resultado.total;
         this.lancamentos = resultado.lancamentos;
       })
-      .catch(erro => this.errorHandler.handle(erro));;
+      .catch(erro => this.errorHandler.handle(erro));
   }
 
   aoMudarPagina(event: LazyLoadEvent) {
@@ -61,6 +61,7 @@ export class LancamentosPesquisaComponent implements OnInit{
         }
 
         this.messageService.add({ severity: 'success', detail: 'Lançamento excluído com sucesso!' });
-      });
+      })
+      .catch(erro => this.errorHandler.handle(erro));
   }
 }
