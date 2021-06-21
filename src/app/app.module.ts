@@ -1,6 +1,8 @@
-import { NgModule } from '@angular/core';
+import { NgModule, LOCALE_ID } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import localePt from '@angular/common/locales/pt';
+import { registerLocaleData } from '@angular/common';
 
 import { ConfirmationService, MessageService } from 'primeng/api';
 import { ToastModule } from 'primeng/toast';
@@ -13,6 +15,9 @@ import { CoreModule } from './core/core.module';
 import { HttpClientModule } from '@angular/common/http';
 import { LancamentoService } from './lancamentos/lancamento.service';
 import { PessoaService } from './pessoas/pessoa.service';
+
+
+registerLocaleData(localePt);
 
 @NgModule({
   declarations: [
@@ -31,6 +36,8 @@ import { PessoaService } from './pessoas/pessoa.service';
     PessoasModule
   ],
   providers: [
+    { provide: LOCALE_ID, useValue: 'pt-BR' },
+
     MessageService,
     ConfirmationService,
 
