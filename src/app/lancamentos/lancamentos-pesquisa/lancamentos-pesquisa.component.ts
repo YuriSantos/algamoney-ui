@@ -1,4 +1,5 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
+import { Title } from '@angular/platform-browser';
 import { ConfirmationService, LazyLoadEvent, MessageService } from 'primeng/api';
 import { Table } from 'primeng/table';
 import { ErrorHandlerService } from 'src/app/core/error-handler.service';
@@ -20,10 +21,12 @@ export class LancamentosPesquisaComponent implements OnInit{
     private lancamentoService: LancamentoService,
     private messageService: MessageService,
     private errorHandler: ErrorHandlerService,
-    private confirmation: ConfirmationService
+    private confirmation: ConfirmationService,
+    private title: Title
     ) { }
 
   ngOnInit() {
+    this.title.setTitle('Pesquisa de lançamentos');
   }
 
   pesquisar(pagina = 0) {

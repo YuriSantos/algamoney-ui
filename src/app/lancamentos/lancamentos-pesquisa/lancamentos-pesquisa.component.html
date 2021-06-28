@@ -78,7 +78,8 @@
             </td>
             <td class="col-acoes">
               <span class="p-column-title"></span>
-              <a pButton icon="pi pi-pencil" pTooltip="Editar" tooltipPosition="top"></a>
+              <a pButton icon="pi pi-pencil" pTooltip="Editar" tooltipPosition="top"
+                [routerLink]="['/lancamentos', lancamento.codigo]"></a>
               <button pButton icon="pi pi-trash" pTooltip="Excluir" tooltipPosition="top"
                 (click)="confirmarExclusao(lancamento)"></button>
             </td>
@@ -88,7 +89,7 @@
     </div>
 
     <div class="p-col-12">
-      <a pButton label="Novo Lançamento"></a>
+      <a routerLink="/lancamentos/novo" pButton label="Novo Lançamento"></a>
     </div>
 
   </div>

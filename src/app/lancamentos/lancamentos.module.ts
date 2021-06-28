@@ -14,6 +14,7 @@ import { SelectButtonModule } from 'primeng/selectbutton';
 import { DropdownModule } from 'primeng/dropdown';
 import { CurrencyMaskModule } from 'ng2-currency-mask';
 import { SharedModule } from '../shared/shared.module';
+import { LancamentosRoutingModule } from './lancamentos-routing.module';
 
 
 
@@ -35,14 +36,12 @@ import { SharedModule } from '../shared/shared.module';
     CalendarModule,
     SelectButtonModule,
     DropdownModule,
+    LancamentosRoutingModule,
 
     CurrencyMaskModule,
 
     SharedModule
   ],
-  exports: [
-    LancamentoCadastroComponent,
-    LancamentosPesquisaComponent
-  ]
+  exports: []
 })
 export class LancamentosModule { }
