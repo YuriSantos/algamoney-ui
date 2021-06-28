@@ -1,4 +1,5 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
+import { Title } from '@angular/platform-browser';
 import { ConfirmationService, LazyLoadEvent, MessageService } from 'primeng/api';
 import { Table } from 'primeng/table';
 import { ErrorHandlerService } from 'src/app/core/error-handler.service';
@@ -15,12 +16,18 @@ export class PessoasPesquisaComponent {
   filtro = new PessoaFiltro();
   pessoas = [];
   @ViewChild('tabela') grid: Table;
-  
+
   constructor(
     private pessoaService: PessoaService,
     private errorHandler: ErrorHandlerService,
+    private confirmation: ConfirmationService,
     private messageService: MessageService,
-    private confirmation: ConfirmationService) { }
+    private title: Title
+  ) { }
+
+  ngOnInit() {
+    this.title.setTitle('Pesquisa de pessoas');
+  }
 
   pesquisar(pagina = 0) {
     this.filtro.pagina = pagina;
@@ -56,9 +63,9 @@ export class PessoasPesquisaComponent {
           this.grid.reset();
         }
 
-        this.messageService.add({ severity: 'success', detail: 'Pessoa excluída com sucesso!' });
+        this.messageService.add({ severity: 'success', detail: 'Pesssoa excluída com sucesso!' });
       })
-      .catch(erro => this.errorHandler.handle(erro));;
+      .catch(erro => this.errorHandler.handle(erro));
   }
 
   alternarStatus(pessoa: any): void {
@@ -73,6 +80,5 @@ export class PessoasPesquisaComponent {
       })
       .catch(erro => this.errorHandler.handle(erro));
   }
-
 
 }
