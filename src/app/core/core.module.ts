@@ -12,6 +12,8 @@ import { PessoaService } from './../pessoas/pessoa.service';
 import { LancamentoService } from './../lancamentos/lancamento.service';
 import { NavBarComponent } from './nav-bar/nav-bar.component';
 import { RouterModule } from '@angular/router';
+import { Title } from '@angular/platform-browser';
+import { AuthService } from '../seguranca/auth.service';
 
 registerLocaleData(localePt);
 
@@ -33,9 +35,11 @@ registerLocaleData(localePt);
     LancamentoService,
     PessoaService,
     ErrorHandlerService,
+    AuthService,
 
     ConfirmationService,
     MessageService,
+    Title,
     { provide: LOCALE_ID, useValue: 'pt-BR' }
   ]
 })
