@@ -6,6 +6,7 @@ import { InputTextModule } from 'primeng/inputtext';
 import { ButtonModule } from 'primeng/button';
 import { SegurancaRoutingModule } from './seguranca-routing.module';
 import { JwtHelperService, JwtModule } from '@auth0/angular-jwt';
+import { AuthGuard } from './auth.guard';
 
 export function tokenGetter(): string {
   return localStorage.getItem('token');
@@ -30,6 +31,6 @@ export function tokenGetter(): string {
 
     SegurancaRoutingModule
   ],
-  providers: [JwtHelperService]
+  providers: [JwtHelperService, AuthGuard]
 })
 export class SegurancaModule { }
