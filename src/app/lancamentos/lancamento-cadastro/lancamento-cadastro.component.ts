@@ -39,6 +39,8 @@ export class LancamentoCadastroComponent implements OnInit {
     ) { }
 
     ngOnInit() {
+      this.configurarFormulario();
+      
       const codigoLancamento = this.route.snapshot.params['codigo'];
 
       this.title.setTitle('Novo lançamento');
