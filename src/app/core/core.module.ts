@@ -7,7 +7,7 @@ import { NgModule } from '@angular/core';
 import { Title } from '@angular/platform-browser';
 import { RouterModule } from '@angular/router';
 
-import { TranslateLoader, TranslateModule, TranslateService } from '@ngx-translate/core';
+import { TranslateModule } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 
 import { ConfirmationService, MessageService } from 'primeng/api';
@@ -34,21 +34,12 @@ export function HttpLoaderFactory(http: HttpClient): TranslateHttpLoader {
   imports: [
     CommonModule,
     RouterModule,
-
     ToastModule,
     ConfirmDialogModule,
-
-    TranslateModule.forRoot({
-      loader: {
-        provide: TranslateLoader,
-        useFactory: HttpLoaderFactory,
-        deps: [HttpClient]
-      }
-    }),
+    TranslateModule
   ],
   exports: [
     NavbarComponent,
-
     ToastModule,
     ConfirmDialogModule,
   ],
@@ -56,11 +47,9 @@ export function HttpLoaderFactory(http: HttpClient): TranslateHttpLoader {
     DatePipe,
     ErrorHandlerService,
     AuthService,
-
     MessageService,
     ConfirmationService,
-    Title,
-    TranslateService,
+    Title
   ]
 })
 export class CoreModule { }

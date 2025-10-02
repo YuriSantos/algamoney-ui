@@ -4,11 +4,13 @@ import { AbstractControl, FormControl } from '@angular/forms';
 @Component({
     selector: 'app-message',
     template: `
-    <div *ngIf="temErro()"
-      class="p-message p-message-error">
-      {{ text }}
-    </div>
-  `,
+    @if (temErro()) {
+      <div
+        class="p-message p-message-error">
+        {{ text }}
+      </div>
+    }
+    `,
     styles: [`
     .p-message-error {
       margin: 0;
