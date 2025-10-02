@@ -9,9 +9,10 @@ import { Pessoa } from '../../core/model';
 import { PessoaService } from '../pessoa.service';
 
 @Component({
-  selector: 'app-pessoa-cadastro',
-  templateUrl: './pessoa-cadastro.component.html',
-  styleUrls: ['./pessoa-cadastro.component.css']
+    selector: 'app-pessoa-cadastro',
+    templateUrl: './pessoa-cadastro.component.html',
+    styleUrls: ['./pessoa-cadastro.component.css'],
+    standalone: false
 })
 export class PessoaCadastroComponent implements OnInit {
 

@@ -7,9 +7,10 @@ import { ErrorHandlerService } from 'src/app/core/error-handler.service';
 import { PessoaFiltro, PessoaService } from '../pessoa.service';
 
 @Component({
-  selector: 'app-pessoas-pesquisa',
-  templateUrl: './pessoas-pesquisa.component.html',
-  styleUrls: ['./pessoas-pesquisa.component.css']
+    selector: 'app-pessoas-pesquisa',
+    templateUrl: './pessoas-pesquisa.component.html',
+    styleUrls: ['./pessoas-pesquisa.component.css'],
+    standalone: false
 })
 export class PessoasPesquisaComponent implements OnInit {
   totalRegistros = 0;

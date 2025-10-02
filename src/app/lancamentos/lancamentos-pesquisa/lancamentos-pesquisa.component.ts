@@ -9,9 +9,10 @@ import { ErrorHandlerService } from 'src/app/core/error-handler.service';
 import { LancamentoFiltro, LancamentoService } from './../lancamento.service';
 
 @Component({
-  selector: 'app-lancamentos-pesquisa',
-  templateUrl: './lancamentos-pesquisa.component.html',
-  styleUrls: ['./lancamentos-pesquisa.component.css']
+    selector: 'app-lancamentos-pesquisa',
+    templateUrl: './lancamentos-pesquisa.component.html',
+    styleUrls: ['./lancamentos-pesquisa.component.css'],
+    standalone: false
 })
 export class LancamentosPesquisaComponent implements OnInit {
 

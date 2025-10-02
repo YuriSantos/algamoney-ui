@@ -3,9 +3,10 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { AuthService } from '../auth.service';
 
 @Component({
-  selector: 'app-authorized',
-  templateUrl: './authorized.component.html',
-  styleUrls: ['./authorized.component.css']
+    selector: 'app-authorized',
+    templateUrl: './authorized.component.html',
+    styleUrls: ['./authorized.component.css'],
+    standalone: false
 })
 export class AuthorizedComponent implements OnInit {
 

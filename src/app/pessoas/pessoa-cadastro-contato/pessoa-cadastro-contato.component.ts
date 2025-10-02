@@ -3,9 +3,10 @@ import { NgForm } from '@angular/forms';
 import { Contato } from 'src/app/core/model';
 
 @Component({
-  selector: 'app-pessoa-cadastro-contato',
-  templateUrl: './pessoa-cadastro-contato.component.html',
-  styleUrls: ['./pessoa-cadastro-contato.component.css']
+    selector: 'app-pessoa-cadastro-contato',
+    templateUrl: './pessoa-cadastro-contato.component.html',
+    styleUrls: ['./pessoa-cadastro-contato.component.css'],
+    standalone: false
 })
 export class PessoaCadastroContatoComponent implements OnInit {
 

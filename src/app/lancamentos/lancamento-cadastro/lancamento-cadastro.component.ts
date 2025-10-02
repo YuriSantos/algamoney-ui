@@ -13,9 +13,10 @@ import { CategoriaService } from './../../categorias/categoria.service';
 import { Lancamento } from './../../core/model';
 
 @Component({
-  selector: 'app-lancamento-cadastro',
-  templateUrl: './lancamento-cadastro.component.html',
-  styleUrls: ['./lancamento-cadastro.component.css']
+    selector: 'app-lancamento-cadastro',
+    templateUrl: './lancamento-cadastro.component.html',
+    styleUrls: ['./lancamento-cadastro.component.css'],
+    standalone: false
 })
 export class LancamentoCadastroComponent implements OnInit {
   formulario!: FormGroup;

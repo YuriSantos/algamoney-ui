@@ -2,20 +2,21 @@ import { Component, Input } from '@angular/core';
 import { AbstractControl, FormControl } from '@angular/forms';
 
 @Component({
-  selector: 'app-message',
-  template: `
+    selector: 'app-message',
+    template: `
     <div *ngIf="temErro()"
       class="p-message p-message-error">
       {{ text }}
     </div>
   `,
-  styles: [`
+    styles: [`
     .p-message-error {
       margin: 0;
       margin-top: 4px;
       padding: 3px;
     }
-  `]
+  `],
+    standalone: false
 })
 export class MessageComponent {
 

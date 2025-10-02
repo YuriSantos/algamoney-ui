@@ -6,6 +6,7 @@ import { Component, OnInit } from '@angular/core';
     <h1 class="text-center">Acesso negado!</h1>
   </div>
   `,
+    standalone: false
 })
 export class NaoAutorizadoComponent implements OnInit {
 
