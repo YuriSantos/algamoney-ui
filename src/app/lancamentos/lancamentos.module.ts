@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { HttpClientModule } from '@angular/common/http';
+import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
@@ -20,32 +20,24 @@ import { LancamentoCadastroComponent } from './lancamento-cadastro/lancamento-ca
 import { LancamentosPesquisaComponent } from './lancamentos-pesquisa/lancamentos-pesquisa.component';
 import { LancamentosRoutingModule } from './lancamentos-routing.module';
 
-@NgModule({
-  imports: [
-    CommonModule,
-    FormsModule,
-    ReactiveFormsModule,
-    HttpClientModule,
-
-    InputNumberModule,
-    InputTextModule,
-    ButtonModule,
-    TableModule,
-    TooltipModule,
-    InputTextareaModule,
-    CalendarModule,
-    SelectButtonModule,
-    DropdownModule,
-    FileUploadModule,
-    ProgressSpinnerModule,
-
-    SharedModule,
-    LancamentosRoutingModule
-  ],
-  declarations: [
-    LancamentoCadastroComponent,
-    LancamentosPesquisaComponent
-  ],
-  exports: []
-})
+@NgModule({ declarations: [
+        LancamentoCadastroComponent,
+        LancamentosPesquisaComponent
+    ],
+    exports: [], imports: [CommonModule,
+        FormsModule,
+        ReactiveFormsModule,
+        InputNumberModule,
+        InputTextModule,
+        ButtonModule,
+        TableModule,
+        TooltipModule,
+        InputTextareaModule,
+        CalendarModule,
+        SelectButtonModule,
+        DropdownModule,
+        FileUploadModule,
+        ProgressSpinnerModule,
+        SharedModule,
+        LancamentosRoutingModule], providers: [provideHttpClient(withInterceptorsFromDi())] })
 export class LancamentosModule { }
