@@ -1,7 +1,8 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { Title } from '@angular/platform-browser';
+
 import { ConfirmationService, LazyLoadEvent, MessageService } from 'primeng/api';
-import { Table } from 'primeng/table';
+
 import { ErrorHandlerService } from 'src/app/core/error-handler.service';
 import { PessoaFiltro, PessoaService } from '../pessoa.service';
 
@@ -10,18 +11,17 @@ import { PessoaFiltro, PessoaService } from '../pessoa.service';
   templateUrl: './pessoas-pesquisa.component.html',
   styleUrls: ['./pessoas-pesquisa.component.css']
 })
-export class PessoasPesquisaComponent {
-
+export class PessoasPesquisaComponent implements OnInit {
   totalRegistros = 0;
-  filtro = new PessoaFiltro();
-  pessoas = [];
-  @ViewChild('tabela') grid: Table;
+  filtro = new PessoaFiltro()
+  pessoas: any[] = [];
+  @ViewChild('tabela') grid!: any;
 
   constructor(
     private pessoaService: PessoaService,
-    private errorHandler: ErrorHandlerService,
-    private confirmation: ConfirmationService,
     private messageService: MessageService,
+    private errorHandler: ErrorHandlerService,
+    private confirmationService: ConfirmationService,
     private title: Title
   ) { }
 
@@ -29,24 +29,23 @@ export class PessoasPesquisaComponent {
     this.title.setTitle('Pesquisa de pessoas');
   }
 
-  pesquisar(pagina = 0) {
+  pesquisar(pagina: number = 0): void {
     this.filtro.pagina = pagina;
 
     this.pessoaService.pesquisar(this.filtro)
-      .then(resultado => {
-        this.totalRegistros = resultado.total;
-        this.pessoas = resultado.pessoas;
-      })
-      .catch(erro => this.errorHandler.handle(erro));
+      .then((dados: any) => {
+        this.pessoas = dados.pessoas;
+        this.totalRegistros = dados.total;
+      });
   }
 
   aoMudarPagina(event: LazyLoadEvent) {
-    const pagina = event.first / event.rows;
+    const pagina = event!.first! / event!.rows!;
     this.pesquisar(pagina);
   }
 
-  confirmarExclusao(pessoa: any) {
-    this.confirmation.confirm({
+  confirmarExclusao(pessoa: any): void {
+    this.confirmationService.confirm({
       message: 'Tem certeza que deseja excluir?',
       accept: () => {
         this.excluir(pessoa);
@@ -55,17 +54,17 @@ export class PessoasPesquisaComponent {
   }
 
   excluir(pessoa: any) {
-    this.pessoaService.excluir(pessoa.codigo)
-      .then(() => {
-        if (this.grid.first === 0) {
-          this.pesquisar();
-        } else {
-          this.grid.reset();
-        }
 
-        this.messageService.add({ severity: 'success', detail: 'Pesssoa excluída com sucesso!' });
-      })
-      .catch(erro => this.errorHandler.handle(erro));
+    this.pessoaService.excluir(pessoa.codigo)
+      .then(
+        () => {
+          this.grid.reset();
+
+          this.messageService.add({ severity: 'success', detail: 'Pessoa excluída com sucesso!' })
+        }
+      )
+      .catch((error) => this.errorHandler.handle(error))
+
   }
 
   alternarStatus(pessoa: any): void {
@@ -80,5 +79,4 @@ export class PessoasPesquisaComponent {
       })
       .catch(erro => this.errorHandler.handle(erro));
   }
-
 }

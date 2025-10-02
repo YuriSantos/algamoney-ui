@@ -1,54 +1,58 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { Title } from '@angular/platform-browser';
+
 import { ConfirmationService, LazyLoadEvent, MessageService } from 'primeng/api';
 import { Table } from 'primeng/table';
+
+import { AuthService } from './../../seguranca/auth.service';
 import { ErrorHandlerService } from 'src/app/core/error-handler.service';
-import { AuthService } from 'src/app/seguranca/auth.service';
-import { LancamentoFiltro, LancamentoService } from '../lancamento.service';
+import { LancamentoFiltro, LancamentoService } from './../lancamento.service';
 
 @Component({
   selector: 'app-lancamentos-pesquisa',
   templateUrl: './lancamentos-pesquisa.component.html',
   styleUrls: ['./lancamentos-pesquisa.component.css']
 })
-export class LancamentosPesquisaComponent implements OnInit{
+export class LancamentosPesquisaComponent implements OnInit {
 
-  totalRegistros = 0;
   filtro = new LancamentoFiltro();
-  lancamentos = [];
-  @ViewChild('tabela') grid: Table;
+
+  totalRegistros: number = 0
+
+  lancamentos: any[] = [];
+  @ViewChild('tabela') grid!: Table;
 
   constructor(
+    private auth: AuthService,
     private lancamentoService: LancamentoService,
-    private messageService: MessageService,
     private errorHandler: ErrorHandlerService,
-    private confirmation: ConfirmationService,
-    private title: Title,
-    private auth: AuthService
-    ) { }
+    private messageService: MessageService,
+    private confirmationService: ConfirmationService,
+    private title: Title
+  ) { }
 
   ngOnInit() {
-    this.title.setTitle('Pesquisa de lançamentos');
+    this.title.setTitle('Pesquisa de lançamentos')
   }
 
-  pesquisar(pagina = 0) {
+  pesquisar(pagina: number = 0): void {
     this.filtro.pagina = pagina;
 
     this.lancamentoService.pesquisar(this.filtro)
-      .then(resultado => {
-        this.totalRegistros = resultado.total;
+      .then((resultado: any) => {
         this.lancamentos = resultado.lancamentos;
+        this.totalRegistros = resultado.total;
       })
       .catch(erro => this.errorHandler.handle(erro));
   }
 
   aoMudarPagina(event: LazyLoadEvent) {
-    const pagina = event.first / event.rows;
+    const pagina = event!.first! / event!.rows!;
     this.pesquisar(pagina);
   }
 
-  confirmarExclusao(lancamento: any) {
-    this.confirmation.confirm({
+  confirmarExclusao(lancamento: any): void {
+    this.confirmationService.confirm({
       message: 'Tem certeza que deseja excluir?',
       accept: () => {
         this.excluir(lancamento);
@@ -57,6 +61,7 @@ export class LancamentosPesquisaComponent implements OnInit{
   }
 
   excluir(lancamento: any) {
+
     this.lancamentoService.excluir(lancamento.codigo)
       .then(() => {
         if (this.grid.first === 0) {
@@ -65,8 +70,11 @@ export class LancamentosPesquisaComponent implements OnInit{
           this.grid.reset();
         }
 
-        this.messageService.add({ severity: 'success', detail: 'Lançamento excluído com sucesso!' });
+        this.messageService.add({ severity: 'success', detail: 'Lançamento excluído com sucesso!' })
       })
-      .catch(erro => this.errorHandler.handle(erro));
+  }
+
+  naoTemPermissao(permissao: string) {
+    return !this.auth.temPermissao(permissao);
   }
 }
